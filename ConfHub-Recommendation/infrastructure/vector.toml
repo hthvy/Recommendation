@@ -1,0 +1,32 @@
+# 1. Nguồn: Đọc file log
+[sources.app_logs]
+type = "file"
+include = [
+  "/var/log/external_app_logs/user-behavior-*.json",
+  "/var/log/external_app_logs/user-behavior-*.json.*"
+]
+
+# 2. Xử lý: Chuyển text thành JSON & Xử lý mặc định
+[transforms.parse_json]
+type = "remap"
+inputs = ["app_logs"]
+source = '''
+  # Parse JSON từ message log
+  . = parse_json!(.message)
+  
+  # ✨ QUAN TRỌNG: Kiểm tra xem có field 'topic_name' không?
+  # Nếu Backend quên gửi, Vector sẽ tự gán vào topic mặc định để tránh lỗi.
+  .topic_name = .topic_name || "general_logs" 
+'''
+
+# 3. Đích: Bắn sang Kafka (ĐỘNG)
+[sinks.kafka_out]
+type = "kafka"
+inputs = ["parse_json"]
+bootstrap_servers = "kafka:29092"
+
+# 👇 THAY ĐỔI LỚN Ở ĐÂY: Dùng cú pháp {{ tên_trường }}
+# Vector sẽ lấy giá trị của trường 'topic_name' trong log để làm tên Topic
+topic = "{{ topic_name }}" 
+
+encoding.codec = "json"

@@ -1,0 +1,103 @@
+# ============================================
+# Python
+# ============================================
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# Virtual Environments
+venv/
+.venv/
+env/
+ENV/
+env.bak/
+venv.bak/
+
+# Testing & Linting
+.pytest_cache/
+.coverage
+htmlcov/
+.tox/
+.nox/
+.mypy_cache/
+.ruff_cache/
+
+# ============================================
+# Jupyter Notebooks & Data Science
+# ============================================
+.ipynb_checkpoints/
+*/.ipynb_checkpoints/*
+
+# Model checkpoints & serialized artifacts (uncomment if models are trained locally)
+# *.pkl
+# *.joblib
+# *.pt
+# *.pth
+# *.onnx
+# *.h5
+
+# ============================================
+# Node.js
+# ============================================
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+# ============================================
+# Environment Variables & Secrets
+# ============================================
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+
+# ============================================
+# Databases & Persistent Storage
+# ============================================
+mongo_data_storage/
+*.sqlite
+*.sqlite3
+*.db
+
+# ============================================
+# Logs
+# ============================================
+logs/
+*.log
+
+# ============================================
+# IDEs & Editors
+# ============================================
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+
+# ============================================
+# OS Generated Files
+# ============================================
+.DS_Store
+Thumbs.db
+desktop.ini

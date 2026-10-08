@@ -1,0 +1,26 @@
+filebeat.inputs:
+- type: log
+  enabled: true
+  paths:
+    # Đây là đường dẫn BÊN TRONG container Filebeat (khớp với volume bạn mount)
+    - /usr/share/filebeat/logs/tracking/*.log
+  
+  # Thêm field để dễ lọc sau này (tùy chọn)
+  fields:
+    service: backend-tracking
+  fields_under_root: true
+
+# Thiết lập Output (Gửi log đi đâu?)
+# Trường hợp 1: Gửi trực tiếp đến Elasticsearch (Phổ biến nhất)
+output.elasticsearch:
+  hosts: ["elasticsearch:9200"]
+  # username: "elastic"  <-- Mở ra nếu có đặt pass
+  # password: "changeme"
+
+# Trường hợp 2: Gửi đến Logstash (Nếu bạn dùng Logstash để xử lý thêm)
+# output.logstash:
+#   hosts: ["logstash:5044"]
+
+# Trường hợp 3: In ra màn hình console (Để test xem filebeat có đọc được file không)
+# output.console:
+#   pretty: true

@@ -1,0 +1,7 @@
+__pycache__/
+*.pyc
+.env
+.DS_Store
+mongo_data_storage/
+venv/
+/node_modules
